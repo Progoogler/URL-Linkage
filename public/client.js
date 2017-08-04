@@ -6,12 +6,6 @@
 
 $(function() {
   console.log('hello world :o');
-  
-  // $.get('/dreams', function(dreams) {
-  //   dreams.forEach(function(dream) {
-  //     $('<li></li>').text(dream).appendTo('ul#dreams');
-  //   });
-  // });
 
   $('form').submit(function(event) {
     event.preventDefault();
@@ -19,8 +13,8 @@ $(function() {
     console.log('client', url)
 
     $.post('/new?' + $.param({url: url}), function( data ) {
-      console.log('success', data);
-      $('<li></li>').html("<a href=" + data + ">" + data + "</a>").appendTo('ul#dreams');
+      data = JSON.parse(data);
+      $('<li></li>').html("<p>Linked Url: </p><a href=" + data.linkedUrl + ">" + data.linkedUrl + "</a> <p>Original Url: </p><a href=" + data.originalUrl + ">" + data.originalUrl + "</a>").appendTo('ul#dreams');
       $('input').val('');
       $('input').focus();
     });

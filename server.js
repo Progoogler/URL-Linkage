@@ -38,7 +38,8 @@ app.post('/new', function(req, res) {
   }
   var obj = {url, locator};
   urls.push(obj);
-  res.send('https://abiding-morning.glitch.me/' + locator);
+  var response = {'originalUrl': url, 'linkedUrl': 'https://abiding-morning.glitch.me/' + locator};
+  res.send(JSON.stringify(response));
 });
 
 // Simple in-memory store
